@@ -1,3 +1,12 @@
-div{
-    color: red;
+@font-face{
+    font-family: 'Tajawal';
+    src: url('../fonts/Tajawal-Regular.ttf') format("truetype") 
+    local('Tajawal');
+}
+html, body{
+    direction: rtl;
+    text-align: right;
+}
+body{
+    font-family: 'Tajawal' ,sans-serif;
 }
