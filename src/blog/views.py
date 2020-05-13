@@ -25,7 +25,11 @@ posts=[
 # Create your views here.
 def blogs_home (request):
     context = {
-        'title': 'صفحة التدوينات',
+        'title': 'مدونة',
         'posts' : posts
     }
     return render(request , 'blog/blogs_page.html' , context)
+
+def about(request):
+   
+    return render(request,'blog/about.html',{'title':'من أنا'})

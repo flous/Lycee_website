@@ -4,7 +4,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        {% if title %}
+        <title> {{title}} | ثانوية ضو مسعود</title>
+        {% else %}
+        <title> ثانوية ضو مسعود</title>
+        {% endif %}
         <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css'%}">
         <link rel="stylesheet" href="{% static 'blog/css/main.css'%}">
         <link rel="shortcut icon " href="{% static 'blog/images/logo3.png'%}">
@@ -39,7 +43,7 @@
                                 <a class="nav-link" href="#">الرئيسية <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link" href="#">المدونة</a>
+                                <a class="nav-link" href="{% url 'blogs'%}">المدونة</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,7 +58,7 @@
                         </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">من أنا</a>
+                            <a class="nav-link" href="{% url 'about'%}">من أنا</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">إتصل بنا </a>
@@ -85,31 +89,31 @@
                         <div class="card mb-3">
                             <h3 class="text-center bg-primary text-light p-2"> آخر النشاطات</h3>
                             <ul>
-                                <li><a href="#""> النشاط الأول </a></li>
-                                <li><a href="#"> النشاط الثاني </a></li>
-                                <li><a href="#"> النشاط الثالث </a></li>
-                                <li><a href="#"> النشاط الرابع </a></li>
-                                <li><a href="#"> النشاط الخامس </a></li>
+                                <li><a class="text-secondary" href="#""> النشاط الأول </a></li>
+                                <li><a class="text-secondary"href="#"> النشاط الثاني </a></li>
+                                <li><a class="text-secondary"href="#"> النشاط الثالث </a></li>
+                                <li><a class="text-secondary"href="#"> النشاط الرابع </a></li>
+                                <li><a class="text-secondary"href="#"> النشاط الخامس </a></li>
                             </ul>
                         </div>
                         <div class="card mb-3">
                             <h3 class="text-center bg-info text-light p-2"> آخر التدوينات</h3>
                             <ul>
-                                <li><a href="#"> التدوينة الأولى </a></li>
-                                <li><a href="#"> التدوينة  الثانية </a></li>
-                                <li><a href="#"> التدوينة الثالثة </a></li>
-                                <li><a href="#"> التدوينة الرابعة </a></li>
-                                <li><a href="#"> التدوينة الخامسة </a></li>
+                                <li><a class="text-secondary" href="#"> التدوينة الأولى </a></li>
+                                <li><a class="text-secondary"href="#"> التدوينة  الثانية </a></li>
+                                <li><a class="text-secondary"href="#"> التدوينة الثالثة </a></li>
+                                <li><a class="text-secondary"href="#"> التدوينة الرابعة </a></li>
+                                <li><a class="text-secondary"href="#"> التدوينة الخامسة </a></li>
                             </ul>
                         </div>
                         <div class="card mb-3">
                             <h3 class="text-center bg-secondary text-light p-2"> آخر التعليقات</h3>
                             <ul>
-                                <li><a href="#"> التعليق الأول </a></li>
-                                <li><a href="#"> التعليق الثاني </a></li>
-                                <li><a href="#"> التعليق الثالث </a></li>
-                                <li><a href="#"> التعليق الرابع </a></li>
-                                <li><a href="#"> التعليق الخامس </a></li>
+                                <li><a class="text-secondary" href="#"> التعليق الأول </a></li>
+                                <li><a class="text-secondary"href="#"> التعليق الثاني </a></li>
+                                <li><a class="text-secondary"href="#"> التعليق الثالث </a></li>
+                                <li><a class="text-secondary" href="#"> التعليق الرابع </a></li>
+                                <li><a class="text-secondary"href="#"> التعليق الخامس </a></li>
                             </ul>
                         </div>
                     </div>
@@ -125,7 +129,7 @@
                            <h3 class="card-title text-center border-bottom  p-2 m-3">
                                من أنا 
                            </h3>
-                            <div class="card-body">
+                            <div class="card-body text-secondary text-justify">
                                 <div class="text-center">
                                     <img src="{% static 'blog/images/logo3.png'%}" width="120" alt="أنا">
                                 </div>
