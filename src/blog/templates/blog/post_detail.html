@@ -1,5 +1,6 @@
 {% extends 'blog/base.html'%}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content%}
 
  <div class="border  p-3 mb-3 " >
@@ -10,25 +11,30 @@
  </div>
 
     <h2 class="border-bottom mt-5 mb-3"> التعليقات      ({{comments.count}})</h2>
-    {% if comments %}
+    
         {% for comment in comments %}
-        <div class=" border border-secondary mb-3 p-3 " id="tbr">    
+        <ul class=" border border-secondary mb-3 p-3 " id="tbr">    
             <h6 class="border-bottom p-2"> 
                 {{comment.name}} 
                 <span class="text-dark"> 
                     {{comment.comment_date|date:'d-m-Y'}}
                 </span>
             </h6>
-            <p class="mb-0">{{comment.body}}</p>
-        </div> 
+             {{comment.body}} 
+        </ul> 
+        {% empty %}
+        <h6 class=" border border-secondary mb-3 p-4  text-center" id="tbr">
+            لا توجد تعليقات 
+       </h6>
         {% endfor%}
-    {% else %}
-    <div class=" border border-secondary mb-3 p-3 " id="tbr">    
-        <h6 class="border-bottom p-2"> 
-            لا توجد تعليقات
-        </h6>
-    </div>
-
-    {% endif %}
+        <h3 class="border-bottom pb-3 mb-4 mt-5">إضافة تعليق جديد</h3>
+        <div class="border p-4 mb-5 mt-4">
+            <form method="POST">
+                {% csrf_token %}
+                {{ comment_form|crispy }}
+                <input class="btn btn-secondary" type="submit" value="نشر التعليق" >
+            </form>
+        </div>
+        
                 
 {% endblock content%}

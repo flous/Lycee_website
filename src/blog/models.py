@@ -15,9 +15,9 @@ class Post (models.Model):
     class Meta:
         ordering=('-post_date',)
 class Comment (models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
-    body  = models.TextField()
+    name = models.CharField(max_length=50 ,verbose_name='الإسم' )
+    email = models.EmailField(verbose_name='البريد الإلكتروني')
+    body  = models.TextField(verbose_name='التعليق')
     comment_date = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)
     post = models.ForeignKey(Post,on_delete=models.CASCADE , related_name='comments')
