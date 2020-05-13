@@ -16,7 +16,7 @@
     
     <body>
       <header>
-          <section class="p-2 text-light text-center" style="background-color: #1EAAF1 ;">
+          <section class="p-2 text-light text-center " style="background-color: #1EAAF1 ;">
               <div class="container-fluid">
                   <div class="row">
                       <div class="col-md"><small><i class="fas fa-map-marker-alt fa-2x" style="color: tomato;"></i></small> العنوان الرسمي و المضبوط للمؤسسة </div>
@@ -26,7 +26,7 @@
               </div>
           </section>
             <!-- start navar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light ">
 
                 <a class="navbar-brand" href="#">
                     <img src="{% static 'blog/images/logo3.png'%}"  alt="شعار المؤسسة"  width="35px">
@@ -97,14 +97,8 @@
                             </ul>
                         </div>
                         <div class="card mb-3">
-                            <h3 class="text-center bg-info text-light p-2"> آخر التدوينات</h3>
-                            <ul>
-                                <li><a class="text-secondary" href="#"> التدوينة الأولى </a></li>
-                                <li><a class="text-secondary"href="#"> التدوينة  الثانية </a></li>
-                                <li><a class="text-secondary"href="#"> التدوينة الثالثة </a></li>
-                                <li><a class="text-secondary"href="#"> التدوينة الرابعة </a></li>
-                                <li><a class="text-secondary"href="#"> التدوينة الخامسة </a></li>
-                            </ul>
+                            <h3 class="text-center bg-info text-light p-2 "> آخر التدوينات</h3>
+                           {% include 'blog/latest_posts.html' %}
                         </div>
                         <div class="card mb-3">
                             <h3 class="text-center bg-secondary text-light p-2"> آخر التعليقات</h3>

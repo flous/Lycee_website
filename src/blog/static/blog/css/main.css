@@ -15,3 +15,25 @@ body{
 .dropdown-menu .dropdown-item{
     text-align: right;
 }
+/* Start Sidebar */
+.latest-post, .latest-comment{
+    padding: 0 15px !important;
+    
+    
+}
+.latest-post .latest-post-item, .latest-comment .latest-comment-item{
+    padding: 6px !important;
+}
+
+.latest-post li:first-child, .latest-comment li:first-child{
+    border-top: 0 !important;
+}
+
+.latest-post li:last-child, .latest-comment li:last-child{
+    border-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+#tbr{
+    border-style: dashed !important;
+}
+/* End Sidebar */
