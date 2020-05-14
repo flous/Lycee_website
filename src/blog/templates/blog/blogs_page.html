@@ -1,9 +1,18 @@
 {% extends 'blog/base.html'%}
 {% load static %}
 {% block content%}
+{% if messages %}
+{% for message in messages %}
 
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+        </div>
+   
+
+    {% endfor %}
+{% endif %}
 {% for post in posts %}
- <div class="border  p-3 mb-3 dashed"    >
+ <div class="border  p-3 mb-3 "    >
      <img class="img-fluid rounded-circle border  m-2 p-1 " width="70px" src="{% static '/blog/images/logo3.png'%}" alt="صورة الناشر">
      <span>نشر في {{post.post_date|date:'d-m-Y'}}</span>
      <h3><a class="text-dark" href="{% url 'detail' post.id %}"> {{post.title}}</a></h3>
