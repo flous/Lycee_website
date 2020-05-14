@@ -25,3 +25,9 @@ class AddUserForm(forms.ModelForm):
         if User.objects.filter(username=cd['username'] ):
             raise forms.ValidationError(' يوجد مستخدم مسجل بهذا الإسم ')
         return cd['username']
+class SigninForm(forms.ModelForm):
+    username=forms.CharField(label='اسم المستخدم')
+    password=forms.CharField(label='كلمة المرور', widget=forms.PasswordInput() )
+    class Meta:
+        model=User
+        fields= ('username', 'password')
