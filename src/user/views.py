@@ -3,6 +3,7 @@ from .forms import AddUserForm , SigninForm
 from django.contrib import messages 
 from django.contrib.auth import authenticate , login , logout
 from blog.models import Post
+from django.contrib.auth.decorators import login_required
 
 
 def adduser(request):
@@ -14,7 +15,7 @@ def adduser(request):
             new_user.save()
             user_name=form.cleaned_data['username']
             messages.success(request,'تهانينا "{}" لقد تمت عمليت تسجيلك بنجاح '.format(user_name))
-            return redirect('blogs')
+            return redirect('login')
     else:
         form=AddUserForm()
     return render(request , 'user/sign_up.html',{'title':'التسجيل','form':form})     
@@ -27,14 +28,15 @@ def sigin_user(request):
         user=authenticate(request , username=username , password=password)
         if user is not None:
             login(request , user)
-            return redirect('blogs')
+            return redirect('profile')
         else:
             messages.warning(request , '!!! هناك خطأ في إسم المستخدم أو كلمة المرور.')
-    return render(request , 'user/login.html',{'title':'تسجيل الدخول '})     
+    return render(request , 'user/login.html',{'title':'تسجيل الدخول '})
 
 def signout_user (request):
     logout(request)
-    return render(request , 'user/logout.html',{'title':'تسجيل الخروج '})    
+    return render(request , 'user/logout.html',{'title':'تسجيل الخروج '})
+@login_required(login_url='login')
 def profile(request):
     posts= Post.objects.filter(author=request.user)
     context ={
