@@ -1,0 +1,50 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+ 
+{% block content%}
+
+
+        <div class="border p-4 mb-5 ">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img class="img-fluid rounded-circle border  m-2 p-1 " width="120px" height="120px"  src="{% static '/blog/images/logo3.png'%}" alt="صورة الناشر">
+                <div class="mt-3">
+                    <a class="btn btn-secondary bg-secondary" href="#"><i class="fas fa-pen fa-xs"></i> تعديل</a>
+                   
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h2 class="mb-4">{{user.username}}</h2>
+                <p class="font-weight-bold">الإسم : <span class="font-weight-normal"> {{user.first_name}} {{ user.last_name}}</span></p>
+                <p class="font-weight-bold">البريد الإلكتروني : <span class="font-weight-normal">{{user.email}}</span></p>
+            </div>
+        </div>
+
+        </div>
+        <div class="row mb-5 ">
+            <div class="col-md">
+                <h3 class="border-bottom pb-3 mb-4">عدد التدوينات التي دونتها </h3>
+                <h4 class="bg-dark text-center p-3 text-light">
+                    ({{posts.count}})
+                </h4>
+                <h3 class="border-bottom pb-3 mb-4 mt-5">تدويناتي </h3>
+            {% for post in posts%}
+                <ul class="pr-2">
+                    <a class="text-dark" href="{% url 'detail' post.pk %}"> {{post}}</a>
+                </ul>
+            {%empty%}
+            <h5 class="text-dark text-center">لا يوجد تدوينات </h5>
+            {%endfor%}
+              {% if posts.count >= 10 %}
+                <div class="border-top pt-3 mt-4 text-center">
+                    <a class="btn btn-secondary bg-secondary  " href="#"> التالي</a>
+                    <span class="pl-4 pr-4">صفحة 1 من 10</span>
+                    <a class="btn btn-secondary bg-secondary" href="#"> السابق</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+           
+        
+                
+{% endblock content%}

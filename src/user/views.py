@@ -2,13 +2,16 @@ from django.shortcuts import render, redirect
 from .forms import AddUserForm , SigninForm
 from django.contrib import messages 
 from django.contrib.auth import authenticate , login , logout
+from blog.models import Post
 
 
 def adduser(request):
     if request.method == 'POST':
         form=AddUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_user=form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password1'])
+            new_user.save()
             user_name=form.cleaned_data['username']
             messages.success(request,'تهانينا "{}" لقد تمت عمليت تسجيلك بنجاح '.format(user_name))
             return redirect('blogs')
@@ -32,5 +35,11 @@ def sigin_user(request):
 def signout_user (request):
     logout(request)
     return render(request , 'user/logout.html',{'title':'تسجيل الخروج '})    
+def profile(request):
+    posts= Post.objects.filter(author=request.user)
+    context ={
+       'title':'الملف الشخصي',
+       'posts':posts,
 
-
+    }
+    return render (request , 'user/profile.html' , context)
