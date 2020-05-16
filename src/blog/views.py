@@ -2,13 +2,23 @@ from django.shortcuts import render , get_object_or_404
 from .models import Post , Comment
 from .forms import AddComment
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator , PageNotAnInteger , EmptyPage
 
 # Create your views here.
 def blogs_home (request):
+    posts=Post.objects.all()
+    paginator = Paginator(posts , 5)
+    page = request.GET.get('page')
+    try:
+        posts=paginator.page(page)
+    except PageNotAnInteger:
+        posts=paginator.page(1)
+    except EmptyPage:
+        posts=paginator.page(paginator.num_page)
     context = {
         'title': 'مدونة',
-        'posts' : Post.objects.all(),
+        'posts' : posts,
+        'page': page,
     }
     return render(request , 'blog/blogs_page.html' , context)
 

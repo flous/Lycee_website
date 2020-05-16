@@ -68,13 +68,13 @@
                 </ul>
                 {% if user.is_authenticated %}
                 <ul  class="navbar-nav mr-auto">
-                    <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> الملف الشخصي <i class="fas fa-address-card"></i></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout'%}"> تسجيل الخروج <i class="fas fa-sign-out-alt"></i></a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> الملف الشخصي <i class="fas fa-address-card  text-dark"></i></a></li>
+                    <li class="nav-item te"><a class="nav-link" href="{% url 'logout'%}">  الخروج <i class="fas fa-sign-out-alt  text-dark"></i></a></li>
                 </ul>
                 {% else %}
                 <ul  class="navbar-nav mr-auto">
-                    <li class="nav-item"> <a class="nav-link" href="{% url 'login'%}"> تسجيل الدخول <i class="fas fa-sign-in-alt"></i></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'signup'%}">   تسجيل <i class="fas fa-user-plus"></i> </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{% url 'login'%}"> الدخول <i class="fas fa-sign-in-alt  text-dark"></i></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'signup'%}">   تسجيل <i class="fas fa-user-plus  text-dark"></i> </a></li>
                 </ul>
                 {% endif %}
                 </div>
