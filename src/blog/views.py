@@ -15,17 +15,20 @@ def blogs_home (request):
         posts=paginator.page(1)
     except EmptyPage:
         posts=paginator.page(paginator.num_page)
+        
+
+
     context = {
         'title': 'مدونة',
         'posts' : posts,
-        'page': page,
+        
     }
     return render(request , 'blog/blogs_page.html' , context)
 
 def about(request):
     return render(request,'blog/about.html',{'title':'من أنا'})
 
-@login_required(login_url='login')
+
 def post_detail(request , post_id):
     post=get_object_or_404(Post , pk=post_id)
     comments=post.comments.filter(active=True)

@@ -22,7 +22,7 @@ class Comment (models.Model):
     active = models.BooleanField(default=False)
     post = models.ForeignKey(Post,on_delete=models.CASCADE , related_name='comments')
     def __str__(self):
-        return '.  علق  {}  على {}  {}'.format(self.name , self.post ,self.comment_date.date())
+        return '.  علق  {}  على {}  '.format(self.name , self.post )
     # من أجل ترتيب التدوينات من الأحدث إلى الأقدم
     class Meta:
         ordering=('-comment_date',)

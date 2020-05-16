@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate , login , logout
 from blog.models import Post
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator , PageNotAnInteger , EmptyPage
 
 def adduser(request):
     if request.method == 'POST':
@@ -39,9 +39,18 @@ def signout_user (request):
 @login_required(login_url='login')
 def profile(request):
     posts= Post.objects.filter(author=request.user)
+    nbrposts = posts.count()
+    paginator = Paginator(posts , 5)
+    page = request.GET.get('page')
+    try:
+        posts=paginator.page(page)
+    except PageNotAnInteger:
+        posts=paginator.page(1)
+    except EmptyPage:
+        posts=paginator.page(paginator.num_page)
     context ={
        'title':'الملف الشخصي',
        'posts':posts,
-
+       'nbrposts':nbrposts,
     }
     return render (request , 'user/profile.html' , context)

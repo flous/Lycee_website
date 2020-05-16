@@ -25,7 +25,7 @@
             <div class="col-md">
                 <h3 class="border-bottom pb-3 mb-4">عدد التدوينات التي دونتها </h3>
                 <h4 class="bg-dark text-center p-3 text-light">
-                    ({{posts.count}})
+                    ({{nbrposts}})
                 </h4>
                 <h3 class="border-bottom pb-3 mb-4 mt-5">تدويناتي </h3>
             {% for post in posts%}
@@ -35,7 +35,7 @@
             {%empty%}
             <h5 class="text-dark text-center">لا يوجد تدوينات </h5>
             {%endfor%}
-
+            {% include  'blog/pagination.html' with page=posts%} 
             </div>
         </div>
            
