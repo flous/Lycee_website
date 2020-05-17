@@ -3,7 +3,7 @@ from .models import Post , Comment
 from .forms import AddComment
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator , PageNotAnInteger , EmptyPage
-
+from django.views.generic import CreateView
 # Create your views here.
 def blogs_home (request):
     posts=Post.objects.all()
@@ -50,3 +50,7 @@ def post_detail(request , post_id):
         'comment_form' :comment_form,
     }
     return render(request , 'blog/post_detail.html', context)
+class PosteCreateView(CreateView):
+    model = Post
+    fields=['title' , 'content'] 
+    template_name = 'blog/add_post.html'

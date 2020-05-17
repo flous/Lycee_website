@@ -5,11 +5,19 @@
 
 
         <div class="border p-4 mb-5 ">
-            <legend class="border-bottom pb-1 mb-4 ">تعديل الملف الشخصي </legend>
+            <legend class="border-bottom pb-1 mb-4 ">تعديل الملف الشخصي  <i class="fas fa-user-cog"></i></legend>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{user_form|crispy }}
-                {{image_form|crispy }}
+                <!-- {{image_form|crispy }} -->
+                <div>
+                    <span>صورة الملف الشخصي*</span>
+                    <br>
+                    الصورة الحالية : <a href="{{user.profile.image.url}}">{{user.profile.image.path}}</a>
+                    <br>
+                    <label for="image" class="btn btn-outline-dark mt-2">اختيار الصورة</label>
+                    <input type="file" name="image" id="image" accept="image/*" style="display: none;">
+                </div>
                 <button class="btn btn-success btn-lg mt-4 " type="submit">حفظ <i class="fas fa-save text-dark"></i></button>
             </form>
         </div>

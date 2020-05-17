@@ -61,7 +61,14 @@ def ProfileUpdate(request):
         image_form =ProfileUpdateForm(request.POST , request.FILES, instance=request.user.profile)
         if user_form.is_valid and image_form.is_valid :
             user_form.save()
+            img=request.user.profile.image
             image_form.save()
+            if img.name != 'default/default.jpg':
+                try:
+                    os.remove(img.path)
+                except OSError as error: 
+                    pass                                  
+                    
             messages.success(request,'تم تعديل الملف الشخصي بنجاح ')
             return redirect('profile')
     else:
@@ -70,5 +77,5 @@ def ProfileUpdate(request):
     context = {
         'title': 'تعديل الملف الشخصي ',
         'user_form':user_form,
-        'image_form':image_form,    }
+        'image_form':image_form,}
     return render( request , 'user/profile_Update.html' , context)
