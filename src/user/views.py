@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from .forms import AddUserForm , SigninForm
+from .forms import AddUserForm , SigninForm , UserUpdateForm , ProfileUpdateForm
 from django.contrib import messages 
 from django.contrib.auth import authenticate , login , logout
 from blog.models import Post
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator , PageNotAnInteger , EmptyPage
+import os
 
 def adduser(request):
     if request.method == 'POST':
@@ -54,3 +55,20 @@ def profile(request):
        'nbrposts':nbrposts,
     }
     return render (request , 'user/profile.html' , context)
+def ProfileUpdate(request):
+    if request.method == 'POST':        
+        user_form =UserUpdateForm(request.POST , instance=request.user)
+        image_form =ProfileUpdateForm(request.POST , request.FILES, instance=request.user.profile)
+        if user_form.is_valid and image_form.is_valid :
+            user_form.save()
+            image_form.save()
+            messages.success(request,'تم تعديل الملف الشخصي بنجاح ')
+            return redirect('profile')
+    else:
+        user_form =UserUpdateForm(instance=request.user)
+        image_form =ProfileUpdateForm(instance=request.user.profile)
+    context = {
+        'title': 'تعديل الملف الشخصي ',
+        'user_form':user_form,
+        'image_form':image_form,    }
+    return render( request , 'user/profile_Update.html' , context)
