@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
+from django.core.validators import EmailValidator
 
 class AddUserForm(forms.ModelForm):
     username=forms.CharField(label='اسم المستخدم', max_length=30 , help_text='اسم المستخدم لا يجب أن يحتوي على مسافات')
