@@ -68,6 +68,7 @@
                 </ul>
                 {% if user.is_authenticated %}
                 <ul  class="navbar-nav mr-auto">
+                    <li class="nav-item"> <a class="nav-link" href="{% url 'add_post' %}"> نشر تدوينة <i class="fas fa-blog  text-dark"></i></a></li>
                     <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> الملف الشخصي <i class="fas fa-address-card  text-dark"></i></a></li>
                     <li class="nav-item te"><a class="nav-link" href="{% url 'logout'%}">  الخروج <i class="fas fa-sign-out-alt  text-dark"></i></a></li>
                 </ul>
@@ -104,11 +105,11 @@
                             </ul>
                         </div>
                         <div class="card mb-3">
-                            <h3 class="text-center bg-info text-light p-2 "> آخر التدوينات</h3>
+                            <h3 class="text-center bg-info text-light p-2 "> آخر التدوينات <i class="fas fa-blog "></i></h3>
                            {% latest_posts %}
                         </div>
                         <div class="card mb-3">
-                            <h3 class="text-center bg-secondary text-light p-2"> آخر التعليقات</h3>
+                            <h3 class="text-center bg-secondary text-light p-2"> آخر التعليقات <i class="far fa-comment-dots"></i></h3>
                             {% latest_comments %}
                         </div>
                     </div>
