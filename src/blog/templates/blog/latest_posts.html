@@ -2,5 +2,7 @@
     <!-- تم استخدام خاصية custom_tags من أجل تمرير آخر خمسة تدوينات -->
 {% for post in l_posts %}
     <li class="list-group-item p-2 pb-2"><a class="text-dark" href="{% url 'detail' post.id %}"> {{post.title}}</a></li>
+{%empty%}
+    <li class="list-group-item p-2 pb-2"> لاتوجد تدوينات </li>
 {% endfor %}
 </ul>

@@ -16,8 +16,13 @@
      <img class="img-fluid rounded-circle border  m-2 p-1 " width="70px" src="{{post.author.profile.image.url}}" alt="صورة الناشر">
      <span>نشر في {{post.post_date|date:'d-m-Y'}}</span>
      <h3><a class="text-dark" href="{% url 'detail' post.id %}"> {{post.title}}</a></h3>
-     <p>{{post.content}}</p>
+     <pre class="text-justify">{{post.content}}</pre>
  </div>
+ {%empty%}
+ <div class="border p-3 mb-3">
+    <h3>لا يوجد تدوينات، إذا كان لديك حساب مسجل من قبل يمكنك <a href="{% url 'login' %}">تسجيل الدخول</a> والقيام بنشر
+        أول تدوينة في الموقع.</h3>
+</div>
 {% endfor %}
 {% include  'blog/pagination.html' with page=posts%}
 {% endblock content%}

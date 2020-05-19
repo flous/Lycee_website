@@ -9,8 +9,15 @@ html, body{
     text-align: right;
 }
 
-body{
+body {
     font-family: 'Tajawal', sans-serif;
+}
+
+pre  {
+    font-family: 'Tajawal', sans-serif;
+     
+    margin: 0 ; 
+    white-space:pre-wrap ;
 }
 .dropdown-menu .dropdown-item{
     text-align: right;
@@ -36,5 +43,8 @@ body{
 
 #tbr{
     border-style: dashed !important;
+}
+#blogparag{
+    font-family: 'Tajawal', sans-serif;
 }
 /* End Sidebar */
