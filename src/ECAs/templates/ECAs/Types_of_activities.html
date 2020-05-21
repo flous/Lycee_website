@@ -1,0 +1,30 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+{% block content%}
+<h1>أنواع النشاطات هنا </h1>
+{% if messages %}
+{% for message in messages %}
+
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+        </div>
+   
+
+    {% endfor %}
+{% endif %}
+{% for Type  in Types %}
+ <div class="border  p-3 mb-3 "    >
+     <img class="img-fluid rounded-circle border  m-2 p-1 " width="120px" src="{{Type.image.url}}" alt="صورة الناشر">
+     <span>نوع النشاط : {{Type.title}}</span>
+      
+      
+ </div>
+ {%empty%}
+ <div class="border p-3 mb-3">
+ <h3>لا يوجد أنواع إذا كان لديك حساب مسجل من قبل يمكنك <a href="{% url 'login' %}">تسجيل الدخول</a> والقيام بنشر
+    أول نوع في الموقع.</h3>
+</div>
+ {% endfor %}
+
+ 
+{% endblock content%}
