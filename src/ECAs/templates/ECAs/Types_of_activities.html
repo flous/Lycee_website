@@ -1,7 +1,7 @@
 {% extends 'blog/base.html'%}
 {% load static %}
 {% block content%}
-<h1>أنواع النشاطات هنا </h1>
+<h1>أنواع النشاطات  </h1>
 {% if messages %}
 {% for message in messages %}
 
@@ -15,7 +15,7 @@
 {% for Type  in Types %}
  <div class="border  p-3 mb-3 "    >
      <img class="img-fluid rounded-circle border  m-2 p-1 " width="120px" src="{{Type.image.url}}" alt="صورة الناشر">
-     <span>نوع النشاط : {{Type.title}}</span>
+     <span class="h3">نوع النشاط : <a href="{% url 'activities' Type.id %}"> {{Type.title}} </a></span>
       
       
  </div>

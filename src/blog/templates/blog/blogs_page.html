@@ -1,6 +1,8 @@
 {% extends 'blog/base.html'%}
+{% load post_tag %}
 {% load static %}
 {% block content%}
+
 {% if messages %}
 {% for message in messages %}
 
@@ -11,6 +13,14 @@
 
     {% endfor %}
 {% endif %}
+                                        {% comment "Optional note" %}
+                                        {% if request.user|has_group:"member" %} 
+                                        استعمال الفلتر 
+                                        <h3>أنا  ضمن الفريق</h3>
+                                        {% endif %}
+
+                                        {% endcomment %}
+
 {% for post in posts %}
  <div class="border  p-3 mb-3 "    >
      <img class="img-fluid rounded-circle border  m-2 p-1 " width="70px" src="{{post.author.profile.image.url}}" alt="صورة الناشر">

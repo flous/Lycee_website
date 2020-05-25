@@ -20,10 +20,12 @@ class Activities(models.Model):
     content  = models.TextField()
     post_date = models.DateTimeField(default=timezone.now)
     post_update = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
-    type = models.ForeignKey(TypeActivities,on_delete=models.CASCADE)
+    author = models.ForeignKey(User,on_delete=models.CASCADE , related_name='author')
+    type = models.ForeignKey(TypeActivities,on_delete=models.CASCADE , related_name='activities')
     def __str__(self):
         return self.title
 class ImagesActivities(models.Model):
     image =models.ImageField(default='default/defaultActivitiesImage.jpg', upload_to='ActivitiesImages')
-    user = models.ForeignKey(Activities , on_delete=models.CASCADE)
+    activitie = models.ForeignKey(Activities , on_delete=models.CASCADE,related_name='images')
+    def __str__(self):
+        return self.image.url
