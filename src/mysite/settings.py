@@ -123,11 +123,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# # إذا أردت عمل مجلد من أجل كل المشروع 
-# # STATICFILES_DIRS =[
-# #     os.path.join(BASE_DIR , "static"),
-# #     'src\static',
-# # ] 
+# إذا أردت عمل مجلد من أجل كل المشروع 
+# STATICFILES_DIRS =[
+#     os.path.join(BASE_DIR , "static"),
+#     'src\static',
+# ] 
 CRISPY_TEMPLATE_PACK= 'bootstrap4'
 LOGIN_REDIRECT_URL='/'
 LOGIN_URL='login'
