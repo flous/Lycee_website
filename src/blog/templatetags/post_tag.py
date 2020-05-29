@@ -18,7 +18,13 @@ def latest_comments():
     }
     return context
 @register.inclusion_tag('ECAs/latest_activities.html')
-def latest_activities(id_act):
+def latest_activities():
+    context={
+        'l_acts':Activities.objects.all()[0:5],
+    }
+    return context
+@register.inclusion_tag('ECAs/regroup_activities.html')
+def regroup_activities(id_act):
     act=Activities.objects.get(id=id_act)
     context={
         'act':act,
