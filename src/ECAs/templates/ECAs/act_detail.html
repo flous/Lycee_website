@@ -10,8 +10,9 @@
                <!-- ازرار التعديل  -->
                {% if  request.user|has_group:"member" %}
                <div class="form-group  pt-3" style="float: left;">
-                   <a class="btn btn-secondary" href="#"> تعديل</a>
-                   <a class="btn btn-danger" href="#"> حذف</a>
+                <a class="btn btn-success" href="{% url 'upload_images' act.pk %}"> صور</a>
+                   <a class="btn btn-secondary" href="{% url 'update_act' act.pk %}"> تعديل</a>
+                   <a class="btn btn-danger" href="{% url 'delete_act' act.pk %}"> حذف</a>
                </div>
                {% endif %}
           
@@ -33,16 +34,16 @@
                   {% for img in imgs_activiti%}
                   {% if forloop.counter0 == 0%}
                   <div class="carousel-item active">
-                    <img src="{{img.image.url}}"class="d-block w-100" style=" height: 300px;"alt="....">
+                    <img src="{{img.image.url}}"class="d-block w-100" style=" height: 400px;"alt="....">
                   </div>
                   {% else %}
                   <div class="carousel-item ">
-                    <img src="{{img.image.url}}"class="d-block w-100" style=" height: 300px;"alt="....">
+                    <img src="{{img.image.url}}"class="d-block w-100" style=" height: 400px;"alt="....">
                   </div>
                   {% endif %}
                   {%empty%}
                   <div class="carousel-item active">
-                    <img src="{{act.type.image.url}}"class="d-block w-100" style=" height: 300px;"alt="لا يوجد صور ">
+                    <img src="{{act.type.image.url}}"class="d-block w-100" style=" height: 400px;"alt="لا يوجد صور ">
                   </div>
                   {% endfor %}
                 </div>

@@ -1,8 +1,10 @@
-from django.shortcuts import render ,get_object_or_404
+from django.shortcuts import render ,get_object_or_404 ,redirect , HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView ,UpdateView , DeleteView
 from .models import TypeActivities , Activities , ImagesActivities
 from .forms import AddActtForm
+from django.contrib.auth.models import User ,Group
+from django.urls import reverse
 
 # Create your views here.
 # من أجل عرض أنواع النشاطات على الصفحة Types_of_activities.html 
@@ -42,3 +44,39 @@ class ActCreateView(LoginRequiredMixin ,CreateView ):
     def form_valid(self , form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+ # تعديل نشاط موجود مسبقا 
+class ActUpdateView(LoginRequiredMixin ,UserPassesTestMixin,UpdateView):
+    model = Activities
+    template_name = 'ECAs/update_act.html'
+    form_class =AddActtForm
+    def form_valid(self , form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    def test_func (self):
+        try:
+            group =  Group.objects.get(name='member')
+        except Group.DoesNotExist:
+            return False
+        return group in self.request.user.groups.all()
+class ActDeletView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    model = Activities
+    success_url = '/'
+    def test_func (self):
+        act =self.get_object()
+        if self.request.user == act.author:
+            return True
+        return False
+def uplaod_images(request , id_act):
+    count=0
+    if request.method=='POST':
+        
+        act = Activities.objects.get(id=id_act)
+        files = request.FILES.getlist('file-input')
+        for f in files:
+            instance = ImagesActivities(image=f , activitie=act)
+            instance.save()
+        # return redirect('/act_detail/'+str(id_act))
+        return HttpResponseRedirect(reverse('act_detail', args=[id_act]))
+    else:
+        context={'title':'تحميل صور النشاط ','count':id_act,}
+        return render(request , 'ECAs/Uplaoder_images.html',context)

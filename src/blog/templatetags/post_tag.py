@@ -31,6 +31,14 @@ def regroup_activities(id_act):
         'imgs_activiti' :ImagesActivities.objects.filter(activitie=act),
     }
     return context
+@register.inclusion_tag('ECAs/images_activities.html')
+def consult_images_activities(id_act):
+    act=Activities.objects.get(id=id_act)
+    context={
+        'act':act,
+        'imgs_activiti' :ImagesActivities.objects.filter(activitie=act),
+    }
+    return context
 @register.filter(name='has_group')
 def has_group(user, group_name):
     try:
