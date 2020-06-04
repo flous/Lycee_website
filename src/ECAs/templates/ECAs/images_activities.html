@@ -1,0 +1,31 @@
+{% if imgs_activiti %}
+<div class="border  p-2 mb-3 mt-5 text-center" > 
+    <legend class="border-bottom pb-1 mb-4 bg-warning text-right"> مراجعةالصور  الخاصة بالمنشور    <i class="far fa-eye"></i></legend>
+
+    <form action={% url 'delete_images' act.id %}  class="was-validated" method="POST" enctype="multipart/form-data" >
+
+        <div class="card-columns "> 
+                {% csrf_token %}
+                {% for img in imgs_activiti%}
+      
+      <div class="card border-danger mb-3" >
+        <img src="{{img.image.url}}" style="width: 10rem; height:10rem ;" class="card-img-top rounded w-100 p-1" alt="...">
+        
+            <div class="card-footer   border-danger"> 
+                
+                    <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id='{{img.pk}}'' value='True' name='{{img.pk}}' >
+                    <label class="custom-control-label" for='{{img.pk}}'>حذف الصورة </label>
+                    <div class="invalid-feedback">تأكد من الصورة قبل حذفها</div>
+
+               
+            </div>
+        </div>
+      </div>
+      {%endfor%}     
+    </div>
+    <button class="btn btn-success btn-lg mt-4 " type="submit">  حذف الصور المحددة <i class="fas fa-arrow-circle-up"></i></button>
+    
+    
+</div>
+{% endif %}

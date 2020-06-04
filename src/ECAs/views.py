@@ -67,9 +67,7 @@ class ActDeletView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
             return True
         return False
 def uplaod_images(request , id_act):
-    count=0
     if request.method=='POST':
-        
         act = Activities.objects.get(id=id_act)
         files = request.FILES.getlist('file-input')
         for f in files:
@@ -78,5 +76,18 @@ def uplaod_images(request , id_act):
         # return redirect('/act_detail/'+str(id_act))
         return HttpResponseRedirect(reverse('act_detail', args=[id_act]))
     else:
-        context={'title':'تحميل صور النشاط ','count':id_act,}
+        context={'title':'تحميل صور النشاط ','act':id_act,}
+        return render(request , 'ECAs/Uplaoder_images.html',context)
+def delete_images(request , id_act):
+    if request.method=='POST':
+        act=Activities.objects.get(id=id_act)
+        images=ImagesActivities.objects.filter(activitie=act)
+        for img in images:
+            if request.POST.get(str(img.pk)):
+                img.delete()
+
+        # return redirect('/act_detail/'+str(id_act))
+        return HttpResponseRedirect(reverse('act_detail', args=[id_act]))
+    else:
+        context={'title':'تحميل صور النشاط ','act':id_act,}
         return render(request , 'ECAs/Uplaoder_images.html',context)
