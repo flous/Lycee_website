@@ -2,8 +2,9 @@
 {% load static %}
 {% load post_tag %}
 {% block content%}
-
-<h1>النشاطات</h1>
+ 
+<legend class="border-bottom text-light p-2 mb-3 bg-primary text-right">نشاطات {{type_act.title}}  </legend>
+ 
 {% for act in acts %}
 <!-- tag to load page regroup_activities.html -->
 {% regroup_activities  act.id %}
@@ -13,5 +14,5 @@
        أول نشاط  .</h3>
    </div>
 {% endfor %}
-
+{% include  'blog/pagination.html' with page=acts%}
 {% endblock content%}

@@ -1,7 +1,8 @@
 {% extends 'blog/base.html'%}
 {% load static %}
 {% block content%}
-<h1>أنواع النشاطات  </h1>
+ 
+    <legend class="border-bottom text-light p-2 mb-3 bg-primary text-right">أنواع النشاطات   <i class="fas fa-puzzle-piece"></i></legend>
 {% if messages %}
 {% for message in messages %}
 
@@ -15,7 +16,7 @@
 {% for Type  in Types %}
  <div class="border  p-3 mb-3 "    >
      <img class="img-fluid rounded-circle border  m-2 p-1 " width="120px" src="{{Type.image.url}}" alt="صورة الناشر">
-     <span class="h3">نوع النشاط : <a href="{% url 'activities' Type.id %}"> {{Type.title}} </a></span>
+     <span class="h3">نشاطات : <a href="{% url 'activities' Type.id %}"> {{Type.title}} </a></span>
       
       
  </div>

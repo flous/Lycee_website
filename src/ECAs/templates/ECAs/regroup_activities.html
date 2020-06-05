@@ -1,7 +1,7 @@
 
 <div class="border  p-2 mb-3" > 
-    <div >
-      {{act.title}}
+  <div >
+      
     <div id="carouselExampleControls{{act.pk}}" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
 
@@ -31,5 +31,6 @@
         </a>
       </div>
     </div> 
-    <p>{{act.title}} : {{act.content}} {{imgs_activiti.count}}</p>
+    <pre  class='bg-light p-2'><h4><a href="{% url 'act_detail' act.pk %}" > {{act.title}}:</a> </h4>
+{{act.content}} </pre>
     </div>
