@@ -68,7 +68,21 @@
                 </ul>
                 {% if user.is_authenticated %}
                 <ul  class="navbar-nav mr-auto">
-                    <li class="nav-item"> <a class="nav-link" href="{% url 'add_post' %}"> نشر تدوينة <i class="fas fa-blog  text-dark"></i></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        عمليات <svg class="bi bi-command" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 0 3.5 5H5V3.5a1.5 1.5 0 1 0-3 0zM6 6V3.5A2.5 2.5 0 1 0 3.5 6H6zm8-2.5A1.5 1.5 0 0 1 12.5 5H11V3.5a1.5 1.5 0 0 1 3 0zM10 6V3.5A2.5 2.5 0 1 1 12.5 6H10zm-8 6.5A1.5 1.5 0 0 1 3.5 11H5v1.5a1.5 1.5 0 0 1-3 0zM6 10v2.5A2.5 2.5 0 1 1 3.5 10H6zm8 2.5a1.5 1.5 0 0 0-1.5-1.5H11v1.5a1.5 1.5 0 0 0 3 0zM10 10v2.5a2.5 2.5 0 1 0 2.5-2.5H10z"/>
+                            <path fill-rule="evenodd" d="M10 6H6v4h4V6zM5 5v6h6V5H5z"/>
+                          </svg></a>
+                    <div class="dropdown-menu  bg-light" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item bg-primary  text-light" href="{% url 'add_act'%}"> إضافة نشاط <i class="fas fa-puzzle-piece"></i></a>
+                            <a class="dropdown-item bg-info text-light" href="{% url 'add_post' %}">نشر تدوينة <i class="fas fa-blog"></i> </a>
+                            <a class="dropdown-item bg-dark text-light" href="#">إضافة فيديو <i class="fas fa-film" style="color:red"></i></a>
+                            <a class="dropdown-item bg-secondary text-light" href="#">إضافة موارد  <i class="fas fa-parachute-box" style="color:greenyellow"></i></a>
+                            <div class="dropdown-divider bg-warning"></div>
+                            <a class="dropdown-item bg-success text-light" href="#">الطاقم <i class="far fa-compass" ></i></a>
+                    </div>
+                    </li>
                     <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> الملف الشخصي <i class="fas fa-address-card  text-dark"></i></a></li>
                     <li class="nav-item te"><a class="nav-link" href="{% url 'logout'%}">  الخروج <i class="fas fa-sign-out-alt  text-dark"></i></a></li>
                 </ul>

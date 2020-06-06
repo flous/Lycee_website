@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'user.apps.UserConfig',
     'ECAs.apps.EcasConfig',
+    'videos.apps.VideosConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
