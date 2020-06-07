@@ -1,0 +1,22 @@
+{% extends 'blog/base.html'%}
+{% block content%}
+<legend class="border-bottom text-light p-2 mb-3 bg-dark text-right">الفيديوهات   <i class="fas fa-film" style="color:red"></i></legend>
+<div class="border  p-2  mb-3 " > 
+    <div class="card-deck text-center">
+{% for branch in branches %}
+
+    <div class="card m-3" >
+        <div class="card-body">
+          <h5 class="card-title">الشعبة</h5>
+          <p class="card-text"><a class="text-danger h5" href="{% url 'modules' branch.id %}">{{branch}}</a></p>       
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'modules' branch.id %}" class="btn btn-dark">تحديد المواد</a>
+          </div>
+      </div>
+{%empty%}
+    <p class="h3 p-3">لا يوجد شُعَب</p>
+{% endfor %}
+</div>
+</div>
+{% endblock content%}

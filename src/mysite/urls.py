@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('user.urls')),
     path('', include('ECAs.urls')),
+    path('', include('videos.urls')),
 ]

@@ -1,0 +1,28 @@
+{% extends 'blog/base.html'%}
+{% block content%}
+<legend class="border-bottom text-light p-2 mb-3 bg-dark text-right">الفيديوهات   <i class="fas fa-film" style="color:red"></i></legend>
+<div class="border  p-2  mb-3 " > 
+    <div class="card-columns  p-1 text-center">
+     
+{% for module in modules %}
+
+    <div class="card " >
+        <div class="card-body">
+          <h5 class="card-title"><a class="text-danger h5" href="#">{{module.module}}</a></h5>           
+          <ul class="text-right">
+            <li class="card-text text-danger ">المعامل:<small class="text-info">  {{module.coefficient}} </small></li>
+            <li class="card-text text-danger ">حساب المعدل:<small class="text-info"> {{module.average_expression}} </small></li>
+            <li class="card-text text-danger ">الحجم الساعي السنوي:<small class="text-info">  {{module.hours_per_year}} </small></li>
+            <li class="card-text text-danger ">الحجم الساعي الأسبوعي:<small class="text-info "> {{module.hours_per_week}} </small></li>
+          </ul>  
+          </div>
+        <div class="card-footer">
+            <a href="#" class="btn btn-dark">معاينة الفيديوهات</a>
+          </div>
+      </div>
+{%empty%}
+    <p class="h3 p-3">لا يوجد مواد</p>
+{% endfor %}
+</div>
+</div>
+{% endblock content%}

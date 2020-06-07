@@ -1,0 +1,31 @@
+{% extends 'blog/base.html'%}
+{% block content%}
+<legend class="border-bottom text-light p-2 mb-3 bg-dark text-right">الفيديوهات   <i class="fas fa-film" style="color:red"></i></legend>
+<div class="border  p-2  mb-3 " > 
+    <div class="card-deck text-center">
+{% for level in levels %}
+
+    <div class="card m-3" >
+        <div class="card-body">
+          <h5 class="card-title">مستوى:</h5>
+          
+          <p class="card-text"><a class="text-danger h5" href="{% url 'branches' level.id %}">{{level.level}}</a></p>
+          
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'branches' level.id %}" class="btn btn-dark">تحديد الشعبة</a>
+          </div>
+      </div>
+    
+     
+     
+
+
+{%empty%}
+<div class="border p-3 mb-3">
+    <h3>لا يوجد مستويات</h3>
+   </div>
+{% endfor %}
+</div>
+</div>
+{% endblock content%}
