@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Level,Branch
+from .models import Level,Branch,Module
 
 # Create your views here.
 def levels(request):
@@ -25,4 +25,12 @@ def modules(request , branche_id):
         'modules':modules,
     }
     return render(request , 'videos/modules.html',context)
+def videos(request , module_id):
+    modules=get_object_or_404(Module , pk=module_id)
+    videos=modules.videos.all()
+    context={
+        'title':'فيديوهات ',
+        'videos':videos,
+    }
+    return render(request , 'videos/videos.html',context)
 

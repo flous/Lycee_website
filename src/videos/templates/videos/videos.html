@@ -1,0 +1,54 @@
+{% extends 'blog/base.html'%}
+{% block content%}
+<legend class="border-bottom text-light p-2 mb-2 bg-dark text-right">الفيديوهات   <i class="fas fa-film" style="color:red"></i></legend>
+<div class="border  p-1  mb-3 bg-secondary" > 
+  <div class="container pt-2">
+    <div class="row">
+{% for video in videos %}
+<div class="col-lg-6  p-1">
+    <div class="card h-100 text-center" >
+        
+          <div class="card-title m-1"> 
+            <a class="btn btn-secondary m-1" style="float: left;" href="#"> تعديل</a>
+            <a class="btn btn-danger m-1" style="float: left;" href="#"> حذف</a>
+            <a class="text-danger h5 m-1" style="float: right;" href="#">{{video.title}}</a>
+             
+          </div> 
+          <div class="card-body p-1">
+             
+            <iframe class="w-100  " src='{{video.link}}' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div> 
+        <div class="card-footer p-2">
+            <p class="m-1"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#desc{{video.id}}">
+              وصف الفيديو
+            </button></p>
+                          <!-- Modal -->
+              <div class="modal fade" id="desc{{video.id}}" tabindex="-1" role="dialog" aria-labelledby="desc{{video.id}}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-info" id="desc{{video.id}}">وصفاالفيديو : {{video.title}}</h5>
+                      <button type="button" class="close ml-1" data-dismiss="modal" aria-label="Close" >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <pre class="text-danger text-right text-justify">{{video.description}}</pre>
+                    </div>
+                    <div class="modal-footer "  >
+                      <button type="button" class="btn btn-info  ml-auto" data-dismiss="modal">اخفاء </button>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+{%empty%}
+    <p class="h3 p-3">لا يوجد فيديوهات</p>
+{% endfor %}
+</div>
+</div> 
+</div>
+{% endblock content%}

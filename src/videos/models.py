@@ -18,11 +18,11 @@ class Module (models.Model):
     average_expression=models.CharField(max_length=100 , null=True)
     branch=models.ForeignKey(Branch,on_delete=models.CASCADE , related_name='modules' , verbose_name='الشعبة')
     def __str__(self):
-        return self.module
+        return  '{} {}  '.format(self.module , self.branch)
 class Video (models.Model):
     title=models.CharField(max_length=100)
     description=models.TextField(blank=True, null=True)
-    link=models.CharField(max_length=128)
+    link=models.CharField(max_length=300)
     module=models.ForeignKey(Module,on_delete=models.CASCADE , related_name='videos' , verbose_name='المادة')
     def __str__(self):
             return self.title
