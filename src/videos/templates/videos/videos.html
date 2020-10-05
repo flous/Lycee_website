@@ -9,8 +9,8 @@
     <div class="card h-100 text-center" >
         
           <div class="card-title m-1"> 
-            <a class="btn btn-secondary m-1" style="float: left;" href="#"> تعديل</a>
-            <a class="btn btn-danger m-1" style="float: left;" href="#"> حذف</a>
+            <a class="btn btn-secondary m-1" style="float: left;" href="{% url 'update_videos' pk=video.id %}"> تعديل</a>
+            <a class="btn btn-danger m-1" style="float: left;" href="{% url 'delete_videos' pk=video.id%}"> حذف</a>
             <a class="text-danger h5 m-1" style="float: right;" href="#">{{video.title}}</a>
              
           </div> 
@@ -37,7 +37,6 @@
                     </div>
                     <div class="modal-footer "  >
                       <button type="button" class="btn btn-info  ml-auto" data-dismiss="modal">اخفاء </button>
-                    
                     </div>
                   </div>
                 </div>

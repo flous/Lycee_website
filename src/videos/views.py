@@ -1,6 +1,9 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Level,Branch,Module
-
+from .models import Level,Branch,Module,Video
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import CreateView ,UpdateView , DeleteView
+from django.contrib import messages
+from django.urls import reverse
 # Create your views here.
 def levels(request):
     levels=Level.objects.all()
@@ -33,4 +36,24 @@ def videos(request , module_id):
         'videos':videos,
     }
     return render(request , 'videos/videos.html',context)
+
+class VideoCreateView(LoginRequiredMixin ,CreateView):
+    # ينقص هنا التأكد من أن المستخدم ينتمي إلى مجموعة الأساتذة المصرح لهم
+    model=Video
+    fields=['title','description','link','module']
+    template_name = 'videos/Add_vedio.html'
+    def form_valid(self , form):
+        messages.success(self.request , 'لقد تم إضافة الفيديو بنجاح')
+        return super().form_valid(form)
+class VideoUpdateView(LoginRequiredMixin ,UpdateView):
+    model=Video
+    fields=['title','description','link','module']
+    template_name = 'videos/Update_vedio.html'
+    def form_valid(self , form):
+        messages.success(self.request , 'لقد تم إضافة الفيديو بنجاح')
+        return super().form_valid(form)
+class VideoDeleteView(LoginRequiredMixin ,DeleteView):
+    model =Video
+    def get_success_url(self):
+        return reverse('videos', kwargs={'module_id': self.object.module.id})
 
